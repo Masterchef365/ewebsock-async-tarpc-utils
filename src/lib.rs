@@ -24,4 +24,8 @@ pub enum RpcError {
     Bincode(#[from] BincodeError),
     #[error("Websocket")]
     WebSocket(#[from] Infallible),
+
+    #[cfg(feature = "tokio-tungstenite")]
+    #[error("Websocket")]
+    Tungstenite(#[from] tokio_tungstenite::tungstenite::Error),
 }
